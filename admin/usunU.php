@@ -37,12 +37,12 @@ if ($_SESSION['funkcje'] != 'admin') {
         <btn class="btn-primary text-center" style='width: 33%;' onclick="statystyki()" >Statystki</btn>
     </div>
     <div style="width:100% ; height: 15vh;"></div>
-    <div class="col-12 d-flex justify-content-between mt-3 mx-auto" style='height: 5vh;'>
+    <div class="col-12 d-flex justify-content-between mt-2 mx-auto" style='height: 5vh;'>
         <btn class="btn-secondary mr-1 text-center active" style='width:49%;' onclick="usuunI()"  >Dodaj</btn>
         <btn class="btn-primary text-center" style='width: 49%;' onclick="statystyki()" >Usuń</btn>
     </div>
-    <form action="przyjecie.php" method="post" class="col-md-6 mx-auto">
-        <select class="form-select" aria-label="Default select example" name="rodzaj">
+    <form action="usuwanieU.php" method="post" class="col-md-6 mx-auto mt-4">
+        <select class="form-select" aria-label="Default select example" name="uzyt">
             <?php
 
                 $uzyt = mysqli_query($conn , "SELECT * FROM uzytkownicy");
@@ -54,8 +54,15 @@ if ($_SESSION['funkcje'] != 'admin') {
 
             ?>
         </select>
-        <input type="text" name="waga" class="form-control col-12 mt-1" placeholder="Waga">
-        <button type="submit" class="btn-primary col-12 mt-2">Dodaj</button>
+        <button type="submit" class="btn-primary col-12 mt-2">Usuń</button>
+        <?php
+
+                if(isset($_SESSION['flaga']))
+                {
+                    echo "Usunięto : ".$_SESSION['flaga'];
+                    unset($_SESSION['flaga']);
+                }
+        ?>
     </form>
     </div>
 </body>
