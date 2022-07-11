@@ -32,8 +32,8 @@ if ($_SESSION['funkcje'] != 'admin') {
     </div>
     
     <div class="col-12 d-flex justify-content-between mt-3 mx-auto" style='height: 5vh;'>
-        <btn class="btn-primary text-center" onclick="usunU()"  style='width: 33%;'>Dodaj/Usuń uzytkownika</btn>
-        <btn class="btn-secondary mr-1 text-center active" style='width: 33%;' onclick="usuunI()"  >Dodaj/usuń indeks</btn>
+        <btn class="btn-secondary mr-1 text-center active" onclick="usunU()"  style='width: 33%;'>Dodaj/Usuń uzytkownika</btn>
+        <btn class="btn-primary text-center" style='width: 33%;' onclick="usunI()"  >Dodaj/usuń indeks</btn>
         <btn class="btn-primary text-center" style='width: 33%;' onclick="statystyki()" >Statystki</btn>
     </div>
     <div style="width:100% ; height: 15vh;"></div>

@@ -25,9 +25,9 @@ if ($_SESSION['funkcje'] != 'admin') {
     </form>
     <div id="container" class="col-10 mx-auto">
     <div class="col-12 d-flex justify-content-between mt-5"  style='height: 7vh;'>
-        <btn class="btn-primary  mr-1 text-center" onclick="magazyn()" style='width: 33.2%;'>Magazyn</btn>
-        <btn class="btn-primary  mr-1 text-center" onclick="zamowienia()"  style='width: 33.2;'>Zamowienia</btn>
-        <btn class="btn-secondary mr-1 text-center active" onclick="administracja()" style='width: 33.2;'>Administracja</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="magazyn()" style='width: 33%;'>Magazyn</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="zamowienia()"  style='width: 33%;'>Zamowienia</btn>
+        <btn class="btn-secondary mr-1 text-center active" onclick="administracja()" style='width: 33%;'>Administracja</btn>
     </div>
     
     <div class="col-12 d-flex justify-content-between mt-3 mx-auto" style='height: 6vh;'>
@@ -36,15 +36,17 @@ if ($_SESSION['funkcje'] != 'admin') {
         <btn class="btn-primary text-center" style='width: 33%;' onclick="statystyki()" >Statystki</btn>
     </div>
     <div style="width:100% ; height: 15vh;"></div>
-    <form action="przyjecie.php" method="post" class="col-md-6 mx-auto">
-        <select class="form-select" aria-label="Default select example" name="rodzaj">
-            <option selected>Wybierz asortyment</option>
-            <option value="Niemcy">Niemcy</option>
-            <option value="Polska">Polska</option>
-            <option value="Po Sklep">Po Sklep</option>
-        </select>
+    <form action="dodajI.php" method="post" class="col-md-6 mx-auto">
+        <input type="text" name="nazwa" class="form-control col-12 mt-1" placeholder="Nazwa">
         <input type="text" name="waga" class="form-control col-12 mt-1" placeholder="Waga">
-        <button type="submit" class="btn-primary col-12 mt-2">Dodaj</button>
+        <select name="jakosc" class="form-control col-12 mt-1" >
+            <option value="" selected disabled hidden>Wybierz jakość</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <button type="submit" class="btn btn-primary col-12 mt-1" >Dodaj</button>
     </form>
     </div>
 </body>

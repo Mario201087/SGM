@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include("../polaczenie.php");
 
 if ($_SESSION['funkcje'] != 'admin') {
     header("location: ../index.php");
@@ -25,9 +25,9 @@ if ($_SESSION['funkcje'] != 'admin') {
     </form>
     <div id="container" class="col-10 mx-auto">
     <div class="col-12 d-flex justify-content-between mt-5"  style='height: 7vh;'>
-        <btn class="btn-secondary mr-1 text-center active" onclick="magazyn()" style='width: 33.2%;'>Magazyn</btn>
-        <btn class="btn-primary  mr-1 text-center" onclick="zamowienia()"  style='width: 33.2%;'>Zamowienia</btn>
-        <btn class="btn-primary  mr-1 text-center" onclick="administracja()" style='width: 33.2%;'>Administracja</btn>
+        <btn class="btn-secondary mr-1 text-center active" onclick="magazyn()" style='width: 33%;'>Magazyn</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="zamowienia()"  style='width: 33%;'>Zamowienia</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="administracja()" style='width: 33%;'>Administracja</btn>
     </div>
     
     <div class="col-12 d-flex justify-content-between mt-3 mx-auto" style='height: 6vh;'>

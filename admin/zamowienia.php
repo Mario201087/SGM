@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include("../polaczenie.php");
 
 if ($_SESSION['funkcje'] != 'admin') {
     header("location: ../index.php");
@@ -25,10 +25,9 @@ if ($_SESSION['funkcje'] != 'admin') {
     </form>
     <div id="container" class="col-10 mx-auto">
     <div class="col-12 d-flex justify-content-between mt-5"  style='height: 7vh;'>
-        <btn class="btn-primary mr-1 text-center" onclick="magazyn()" style='width: 24.8%;'>Magazyn</btn>
-        <btn class="btn-secondary mr-1 text-center active " onclick="zamowienia()"  style='width: 24.8%;'>Zamowienia</btn>
-        <btn class="btn-primary  mr-1 text-center" onclick="klient()" style='width: 24.8%;'>Klient</btn>
-        <btn class="btn-primary  mr-1 text-center" onclick="pracownik()" style='width: 24.8%;'>Pracownik</btn>
+        <btn class="btn-secondary mr-1 text-center active" onclick="magazyn()" style='width: 33%;'>Magazyn</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="zamowienia()"  style='width: 33%;'>Zamowienia</btn>
+        <btn class="btn-primary  mr-1 text-center" onclick="administracja()" style='width: 33%;'>Administracja</btn>
     </div>
     
     <div class="col-12 d-flex justify-content-between mt-3 mx-auto" style='height: 6vh;'>
@@ -55,13 +54,9 @@ if ($_SESSION['funkcje'] != 'admin') {
     {
         window.location.href = 'admin.php';
     }
-    function pracownik()
+    function administracja()
     {
-        window.location.href = 'pracownik.php';
-    }
-    function klient()
-    {
-        window.location.href = 'klient.php';
+        window.location.href = 'administracja.php';
     }
     function zamowienia()
     {
