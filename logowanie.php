@@ -1,47 +1,50 @@
 <?php
 session_start();
 
-include 'polaczenie.php';
+include 'connection.php';  // Include the connection file
 
-$_SESSION['znaki'] = '';
-$_SESSION['blad'] = '';
+// Initialize session variables
+$_SESSION['special_characters'] = '';
+$_SESSION['error'] = '';
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$login1 = $_POST['login'];
-$haslo1 = $_POST['haslo'];
+$username1 = $_POST['username'];  // Rename 'login' to 'username'
+$password1 = $_POST['password'];  // Rename 'haslo' to 'password'
 
+// Sanitize the username
+$username = filter_var($username1, FILTER_SANITIZE_SPECIAL_CHARS);
 
-$login = filter_var($login1, FILTER_SANITIZE_SPECIAL_CHARS);
-
-
-if ($login === $login1 && isset($haslo1)) {
-  $pyt = mysqli_query($conn, "SELECT funkcje FROM uzytkownicy WHERE login='$login' AND haslo='$haslo1'");
-  $pyt3 = mysqli_num_rows($pyt);
+if ($username === $username1 && isset($password1)) {
+  $query = mysqli_query($conn, "SELECT role FROM users WHERE username='$username' AND password='$password1'");
+  $numRows = mysqli_num_rows($query);
 
   $conn->close();
-  if ($pyt3 > 0) {
-    $pyt1 = mysqli_fetch_assoc($pyt);
-    if ($pyt1['funkcje'] === 'admin') {
-      $_SESSION['funkcje'] = 'admin';
+
+  if ($numRows > 0) {
+    $row = mysqli_fetch_assoc($query);
+    
+    // Redirect based on the user's role
+    if ($row['role'] === 'admin') {
+      $_SESSION['role'] = 'admin';
       header('Location: admin/admin.php');
-    } else if ($pyt1['funkcje'] === 'pracownik') {
-      $_SESSION['funkcje'] = 'pracownik';
-      header('Location: pracownik/pracownik.php');
-    } else if ($pyt1['funkcje'] === 'klient') {
-      $_SESSION['funkcje'] = 'kient';
-      header('Location: klient/klient.php');
+    } elseif ($row['role'] === 'employee') {
+      $_SESSION['role'] = 'employee';
+      header('Location: employee/employee.php');
+    } elseif ($row['role'] === 'customer') {
+      $_SESSION['role'] = 'customer';
+      header('Location: customer/customer.php');
     }
   } else {
-    $_SESSION['blad'] = true;
+    $_SESSION['error'] = true;
     header('Location: index.php');
   }
 } else {
   $conn->close();
-  $_SESSION['znaki'] = true;
+  $_SESSION['special_characters'] = true;
   header('Location: index.php');
 }
-$conn -> close();
+$conn->close();  // Close the database connection
 ?>
